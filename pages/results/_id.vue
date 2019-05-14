@@ -14,7 +14,8 @@ export default {
     //alert($route.params.p)
   },
   asyncData ({ app }) {
-    return app.$axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=100&types=restaurants&name=harbour&key=${akey.key}`)
+    return app.$axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=100&types=restaurants&name=harbour&key=${akey.key}`,
+    { headers: { 'Access-Control-Allow-Origin': '*' }})
     .then((res) => {
       console.log(res)
     })
