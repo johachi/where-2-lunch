@@ -12,15 +12,17 @@ export default {
   mounted() {
     //alert($route.params.p)
   },
-  async fetch({params, store}){
-    const result = await axios
-      .get(
-      'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=100&types=restaurants&name=harbour&key=AIzaSyBUwMlzYRQE1Qw-3S9xq5WyUJtGaoud_rQ',
-      { headers: { 'Access-Control-Allow-Origin': '*' } }
-    )
-    .catch(error => 'still not working')
-    console.log(result);
-  }
-  //middleware: 'search'
+  // async fetch({params, store}){
+  //   const result = await axios
+  //     .get(
+  //     `/api/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=100&types=restaurants&name=harbour&key=${
+  //       akey.key
+  //     }`,
+  //     { headers: { 'Access-Control-Allow-Origin': '*' } }
+  //   )
+  //   .catch(error => 'still not working')
+  //   console.log(result);
+  // }
+  middleware: 'search'
 }
 </script>
