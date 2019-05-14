@@ -65,7 +65,7 @@ export default {
    ** Build configuration
    */
   build: {
-    vendor: ['axios', 'vuetify'],
+    vendor: ['vuetify'],
     transpile: ['vuetify/lib'],
     plugins: [new VuetifyLoaderPlugin()],
     loaders: {
