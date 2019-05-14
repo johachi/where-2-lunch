@@ -47,19 +47,19 @@ export default {
   /*
    ** Nuxt.js proxy
    */
-  proxy: {
-    '/api': {
-      target: 'https://maps.googleapis.com',
-      pathRewrite: {
-        '^/api': '/'
-      }
-    }
-  },
-  axios: {
-    baseURL: 'https://maps.googleapis.com',
-    proxyHeaders: false,
-    credentials: false
-  },
+  // proxy: {
+  //   '/api': {
+  //     target: 'https://maps.googleapis.com',
+  //     pathRewrite: {
+  //       '^/api': '/'
+  //     }
+  //   }
+  // },
+  // axios: {
+  //   baseURL: 'https://maps.googleapis.com',
+  //   proxyHeaders: false,
+  //   credentials: false
+  // },
 
   /*
    ** Build configuration
