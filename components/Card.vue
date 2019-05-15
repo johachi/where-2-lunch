@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex xs12 sm6 offset-sm3>
-      <v-card target="_blank" :href="`http://lmgtfy.com/?q=${placeName}`">
+      <v-card target="_blank" :href="mapLinkGoogle">
         <v-img
           class="white--text"
           height="200px"
@@ -22,10 +22,6 @@
             <span>{{placeAddress}}</span>
           </div>
         </v-card-title>
-        <!-- <v-card-actions>
-          <v-btn flat color="orange">Share</v-btn>
-          <v-btn flat color="orange">Explore</v-btn>
-        </v-card-actions> -->
       </v-card>
     </v-flex>
   </v-layout>
@@ -44,7 +40,10 @@ export default {
     },
     placePicture: {
       type: String
-      }
+    },
+    mapLinkGoogle: {
+      type: String
     }
+  }
 }
 </script>
