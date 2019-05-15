@@ -54,13 +54,6 @@ export default {
         return `https://maps.googleapis.com/maps/api/place/photo?photoreference=${reference.photos[0].photo_reference}&sensor=false&maxheight=400&maxwidth=600&key=${akey.key}`
       }
       return `https://www.underconsideration.com/brandnew/archives/google_broken_image_04_time_aware.png`;
-    },
-    getPic: ($store) => {
-      const reference = $store.state.places[this.togo].photos[0].photo_reference
-      if ($store.state.places[this.togo].photos.length > 0) {
-        return `https://maps.googleapis.com/maps/api/place/photo?photoreference=${reference}&sensor=false&maxheight=400&maxwidth=600&key=${akey.key}`
-      }
-      return `https://www.underconsideration.com/brandnew/archives/google_broken_image_04_time_aware.png`;
     }
   },
   computed: {
