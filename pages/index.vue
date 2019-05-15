@@ -1,25 +1,16 @@
 <template>
   <div>
     <h1>Search Place Near</h1>
-    </br>
+    <br>
     <form @submit.prevent="submit">
-      <input placeholder="Enter Coordinates" v-model="search" autofocus />
+      <input placeholder="Place" v-model="search" autofocus />
     </form>
   </div>
-  <!-- <v-layout column justify-center align-center>
 
-  </v-layout> -->
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
-
 export default {
-  components: {
-    Logo,
-    VuetifyLogo
-  },
   data() {
     return {
       search: ''
