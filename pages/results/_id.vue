@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1>
-      Where to eat:
+      Where to eat: {{API_KEY}}
     </h1>
     <div v-if="placesExist">
       <Card 
       :placeName="$store.state.places[this.placeToGo].name"
       :placeRating="$store.state.places[this.togo].rating"
       :placeAddress="$store.state.places[this.togo].vicinity"
-      :placePicture="getPictureUrl($store.state.places[this.togo].photos[0].photo_reference)"
+      :placePicture="getPictureUrl($store.state.places[this.togo])"
       />
     </div>
   </div>
@@ -21,6 +21,9 @@ import Card from '~/components/Card.vue'
 
 export default {
   mounted() {
+  },
+  env: {
+    API_KEY: process.env.API_KEY || 'http://localhost:3000'
   },
   async fetch ({ app, store }) {
     const data = await axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.6582788,139.7273854&radius=100&types=restaurant&key=${akey.key}`,
@@ -46,7 +49,11 @@ export default {
   },
   methods: {
     getPictureUrl: (reference) => {
-      return `https://maps.googleapis.com/maps/api/place/photo?photoreference=${reference}&sensor=false&maxheight=400&maxwidth=600&key=${akey.key}`
+      console.log(reference)
+      if (reference.hasOwnProperty('photos')){
+        return `https://maps.googleapis.com/maps/api/place/photo?photoreference=${reference.photos[0].photo_reference}&sensor=false&maxheight=400&maxwidth=600&key=${akey.key}`
+      }
+      return `https://www.underconsideration.com/brandnew/archives/google_broken_image_04_time_aware.png`;
     },
     getPic: ($store) => {
       const reference = $store.state.places[this.togo].photos[0].photo_reference
