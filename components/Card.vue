@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-flex xs12 sm6 offset-sm3>
-      <v-card target="_blank" :href="`http://www.google.com`">
+      <v-card target="_blank" :href="`http://lmgtfy.com/?q=${placeName}`">
         <v-img
           class="white--text"
           height="200px"
