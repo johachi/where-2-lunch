@@ -18,7 +18,6 @@
         <v-card-title>
           <div>
             <span class="grey--text">Rating: {{placeRating}}</span><br>
-            <span>Whitehaven Beach</span><br>
             <span>{{placeAddress}}</span>
           </div>
         </v-card-title>
@@ -47,3 +46,8 @@ export default {
   }
 }
 </script>
+<style lang="stylus" scoped>
+.headline{
+  font-weight: bold;
+}
+</style>
