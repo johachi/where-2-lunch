@@ -30,21 +30,16 @@ export default {
     }
   },
   async fetch({ app, store }) {
-    const data = await axios
-      .get(
-        `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.6582788,139.7273854&radius=100&types=restaurant&key=${
-          akey.key
-        }`,
-        { headers: { 'Access-Control-Allow-Origin': '*' } }
-      )
+    const restaurantData = await axios
+      .get(`/api/places/`)
       .then(res => {
-        return res.data.results
+        return res.data
       })
       .catch(err => {
         alert('_id.vue:', err)
       })
 
-    store.commit('UPDATE_PLACES', data)
+    store.commit('UPDATE_PLACES', restaurantData)
   },
   mounted() {},
   methods: {
