@@ -21,9 +21,6 @@ import akey from './googleapi.js'
 import Card from '~/components/Card.vue'
 
 export default {
-  env: {
-    API_KEY: process.env.API_KEY || 'http://localhost:3000'
-  },
   components: {
     Card
   },
@@ -57,7 +54,7 @@ export default {
           reference.photos[0].photo_reference
         }&sensor=false&maxheight=400&maxwidth=600&key=${akey.key}`
       }
-      return `https://www.underconsideration.com/brandnew/archives/google_broken_image_04_time_aware.png`
+      return `/images/NO_PHOTO.png`
     },
     googleMapLink(coordinates) {
       const lat = coordinates.geometry.location.lat

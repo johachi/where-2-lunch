@@ -39,8 +39,7 @@ export default {
     },
     placePicture: {
       type: String,
-      default:
-        'https://www.underconsideration.com/brandnew/archives/google_broken_image_04_time_aware.png'
+      default: '/images/NO_PHOTO.png'
     },
     mapLinkGoogle: {
       type: String,
