@@ -26,19 +26,25 @@
 export default {
   props: {
     placeName: {
-      type: String
+      type: String,
+      default: 'Unknown'
     },
     placeAddress: {
-      type: String
+      type: String,
+      default: 'Unknown'
     },
     placeRating: {
-      type: Number
+      type: Number,
+      default: -1
     },
     placePicture: {
-      type: String
+      type: String,
+      default:
+        'https://www.underconsideration.com/brandnew/archives/google_broken_image_04_time_aware.png'
     },
     mapLinkGoogle: {
-      type: String
+      type: String,
+      default: 'https://www.google.com/maps'
     }
   }
 }

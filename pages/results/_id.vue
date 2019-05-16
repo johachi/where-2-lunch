@@ -5,11 +5,11 @@
     </h1>
     <div v-if="placesExist">
       <Card
-        :placeName="$store.state.places[placeToGo].name"
-        :placeRating="$store.state.places[togo].rating"
-        :placeAddress="$store.state.places[togo].vicinity"
-        :placePicture="getPictureUrl($store.state.places[togo])"
-        :mapLinkGoogle="googleMapLink($store.state.places[togo])"
+        :place-name="$store.state.selectedPlace.name"
+        :place-rating="$store.state.selectedPlace.rating"
+        :place-address="$store.state.selectedPlace.vicinity"
+        :place-picture="getPictureUrl($store.state.selectedPlace)"
+        :map-link-google="googleMapLink($store.state.selectedPlace)"
       />
     </div>
   </div>
@@ -27,16 +27,17 @@ export default {
   components: {
     Card
   },
-  data: function() {
-    return {
-      togo: 0
+  computed: {
+    placesExist() {
+      return this.$store.state.places.length > 0
     }
   },
   async fetch({ app, store }) {
     const data = await axios
       .get(
-        `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.6582788,139.7273854&radius=100&types=restaurant&key=
-        ${akey.key}`,
+        `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.6582788,139.7273854&radius=100&types=restaurant&key=${
+          akey.key
+        }`,
         { headers: { 'Access-Control-Allow-Origin': '*' } }
       )
       .then(res => {
@@ -62,16 +63,6 @@ export default {
       const lat = coordinates.geometry.location.lat
       const lng = coordinates.geometry.location.lng
       return `http://www.google.com/maps/place/${lat},${lng}`
-    }
-  },
-  computed: {
-    placesExist() {
-      return this.$store.state.places.length > 0
-    },
-    placeToGo() {
-      const maxnumber = this.$store.state.places.length
-      this.togo = Math.floor(Math.random() * Math.floor(maxnumber))
-      return this.togo
     }
   }
 }

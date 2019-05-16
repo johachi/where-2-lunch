@@ -68,8 +68,7 @@ export default {
 }
 </script>
 <style scoped>
-#copyright{
+#copyright {
   margin: 10px;
 }
 </style>
-

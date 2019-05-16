@@ -3,7 +3,7 @@
     <h1>Search Places Near</h1>
     <br />
     <form @submit.prevent="submit">
-      <input placeholder="Place" v-model="search" autofocus />
+      <input v-model="search" placeholder="Place" autofocus />
     </form>
   </div>
 </template>
