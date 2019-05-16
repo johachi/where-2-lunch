@@ -51,10 +51,11 @@ export default {
       }
       return `/images/NO_PHOTO.png`
     },
-    googleMapLink(coordinates) {
-      const lat = coordinates.geometry.location.lat
-      const lng = coordinates.geometry.location.lng
-      return `http://www.google.com/maps/place/${lat},${lng}`
+    googleMapLink(place) {
+      const lat = place.geometry.location.lat
+      const lng = place.geometry.location.lng
+      const id = place.reference
+      return `https://www.google.com/maps/search/?api=1&query=${lat},${lng}&query_place_id=${id}`
     }
   }
 }
