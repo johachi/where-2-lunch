@@ -28,7 +28,6 @@
       <v-toolbar-side-icon @click="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
-
     </v-toolbar>
     <v-content>
       <v-container>
@@ -36,7 +35,7 @@
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2019</span>
+      <span id="copyright">&copy; 2019</span>
     </v-footer>
   </v-app>
 </template>
@@ -63,8 +62,13 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'where-2-lunch'
+      title: 'where 2 lunch'
     }
   }
 }
 </script>
+<style scoped>
+#copyright {
+  margin: 10px;
+}
+</style>
