@@ -42,24 +42,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/proxy'],
-
-  /*
-   ** Nuxt.js proxy
-   */
-  // proxy: {
-  //   '/api': {
-  //     target: 'https://maps.googleapis.com',
-  //     pathRewrite: {
-  //       '^/api': '/'
-  //     }
-  //   }
-  // },
-  // axios: {
-  //   baseURL: 'https://maps.googleapis.com',
-  //   proxyHeaders: false,
-  //   credentials: false
-  // },
+  modules: [],
 
   /*
    ** Build configuration
