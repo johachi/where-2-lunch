@@ -1,12 +1,11 @@
 <template>
   <div>
-    <h1>Search Place Near</h1>
-    <br>
+    <h1>Search Places Near</h1>
+    <br />
     <form @submit.prevent="submit">
       <input placeholder="Place" v-model="search" autofocus />
     </form>
   </div>
-
 </template>
 
 <script>
@@ -17,8 +16,8 @@ export default {
     }
   },
   methods: {
-    submit(event){
-      this.$router.push(`results/${this.search}`);
+    submit(event) {
+      this.$router.push(`results/${this.search}`)
     }
   }
 }
@@ -32,4 +31,3 @@ h1 {
   padding: 20px;
 }
 </style>
-
