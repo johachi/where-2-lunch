@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
 const googleMaps = require('@google/maps')
-const akey = require('../pages/results/googleapi')
+const akey = require('./googleapi')
+
 const googleMapsClient = googleMaps.createClient({
   key: akey.key,
   Promise: Promise
