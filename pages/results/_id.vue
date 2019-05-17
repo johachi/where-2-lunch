@@ -17,17 +17,15 @@
 
 <script>
 import axios from 'axios'
-// import akey from './googleapi.js'
 import Card from '~/components/Card.vue'
 
 export default {
-  data () {
-    return { singlePhoto: 'default', fetchedPlaceData: false }
-  },
   components: {
     Card
   },
-  
+  data() {
+    return { singlePhoto: 'default', fetchedPlaceData: false }
+  },
   computed: {
     placesExist() {
       return this.$store.state.places.length > 0
@@ -45,17 +43,18 @@ export default {
 
     store.commit('UPDATE_PLACES', restaurantData)
   },
-  mounted: async function(){
+  mounted: async function() {
     if (!this.$store.state.selectedPlace.hasOwnProperty('photos')) {
       this.singlePhoto = '/images/NO_PHOTO.png'
     } else {
-      const photoReference = this.$store.state.selectedPlace.photos[0].photo_reference
+      const photoReference = this.$store.state.selectedPlace.photos[0]
+        .photo_reference
       const pictureURL = await axios.get(
         `/api/places/pictures?photoReference=${photoReference}`
       )
       this.singlePhoto = pictureURL.data
     }
-    this.fetchedPlaceData= true
+    this.fetchedPlaceData = true
   },
   methods: {
     googleMapLink(place) {
