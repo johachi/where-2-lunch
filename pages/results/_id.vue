@@ -3,12 +3,12 @@
     <h1>
       Where to eat:
     </h1>
-    <div v-if="placesExist">
+    <div v-if="placesExist && fetchedPlaceData">
       <Card
         :place-name="$store.state.selectedPlace.name"
         :place-rating="$store.state.selectedPlace.rating"
         :place-address="$store.state.selectedPlace.vicinity"
-        :place-picture="getPictureUrl($store.state.selectedPlace)"
+        :place-picture="singlePhoto"
         :map-link-google="googleMapLink($store.state.selectedPlace)"
       />
     </div>
@@ -17,13 +17,17 @@
 
 <script>
 import axios from 'axios'
-import akey from './googleapi.js'
+// import akey from './googleapi.js'
 import Card from '~/components/Card.vue'
 
 export default {
+  data () {
+    return { singlePhoto: 'default', fetchedPlaceData: false }
+  },
   components: {
     Card
   },
+  
   computed: {
     placesExist() {
       return this.$store.state.places.length > 0
@@ -41,16 +45,19 @@ export default {
 
     store.commit('UPDATE_PLACES', restaurantData)
   },
-  mounted() {},
+  mounted: async function(){
+    if (!this.$store.state.selectedPlace.hasOwnProperty('photos')) {
+      this.singlePhoto = '/images/NO_PHOTO.png'
+    } else {
+      const photoReference = this.$store.state.selectedPlace.photos[0].photo_reference
+      const pictureURL = await axios.get(
+        `/api/places/pictures?photoReference=${photoReference}`
+      )
+      this.singlePhoto = pictureURL.data
+    }
+    this.fetchedPlaceData= true
+  },
   methods: {
-    getPictureUrl: function(reference) {
-      if (reference.hasOwnProperty('photos')) {
-        return `https://maps.googleapis.com/maps/api/place/photo?photoreference=${
-          reference.photos[0].photo_reference
-        }&sensor=false&maxheight=400&maxwidth=600&key=${akey.key}`
-      }
-      return `/images/NO_PHOTO.png`
-    },
     googleMapLink(place) {
       const lat = place.geometry.location.lat
       const lng = place.geometry.location.lng
