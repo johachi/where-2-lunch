@@ -1,6 +1,9 @@
 #Mac files
 .DS_Store
 
+#VS Code files
+.vscode/
+
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
 # Logs
