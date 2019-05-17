@@ -43,7 +43,7 @@ export default {
   },
   mounted() {},
   methods: {
-    getPictureUrl: reference => {
+    getPictureUrl: function(reference) {
       if (reference.hasOwnProperty('photos')) {
         return `https://maps.googleapis.com/maps/api/place/photo?photoreference=${
           reference.photos[0].photo_reference

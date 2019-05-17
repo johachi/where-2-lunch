@@ -1,43 +1,39 @@
 const express = require('express')
 const app = express()
-const axios = require('axios')
+const googleMaps = require('@google/maps')
 const akey = require('../pages/results/googleapi')
+const googleMapsClient = googleMaps.createClient({
+  key: akey.key,
+  Promise: Promise
+})
 
 app.get('/places', async function(req, res, next) {
-  const data = await axios
-    .get(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.6582788,139.7273854&radius=100&types=restaurant&key=${
-        akey.key
-      }`,
-      { headers: { 'Access-Control-Allow-Origin': '*' } }
-    )
-    .then(res => {
-      return res.data.results
+  const digi = await googleMapsClient
+    .placesNearby({
+      type: 'restaurant',
+      location: {
+        lat: 35.6582788,
+        lng: 139.7273854
+      },
+      radius: 100
     })
-    .catch(err => {
-      return err
-    })
+    .asPromise()
 
-  res.send(data)
+  res.send(digi.json.results)
 })
 // TODO: Make below get the picture to forward to client
-// app.get('/places/pictures', async function(req, res, next) {
-//   const data = await axios
-//     .get(
-//       `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=35.6582788,139.7273854&radius=100&types=restaurant&key=${
-//         akey.key
-//       }`,
-//       { headers: { 'Access-Control-Allow-Origin': '*' } }
-//     )
-//     .then(res => {
-//       return res.data.results
-//     })
-//     .catch(err => {
-//       return err
-//     })
-
-//   res.send(data)
-// })
+app.get('/places/pictures', async function(req, res, next) {
+  const digi = await googleMapsClient
+    .placesNearby({
+      location: {
+        lat: 35.6582788,
+        lng: 139.7273854
+      },
+      radius: 100
+    })
+    .asPromise()
+  res.send(digi.json.results)
+})
 
 module.exports = {
   path: '/api/',
