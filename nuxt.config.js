@@ -44,6 +44,8 @@ export default {
    */
   modules: [],
 
+  serverMiddleware: ['~/api/index'],
+
   /*
    ** Build configuration
    */
