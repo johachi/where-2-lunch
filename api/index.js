@@ -9,7 +9,7 @@ const googleMapsClient = googleMaps.createClient({
 })
 
 app.get('/places', async function(req, res, next) {
-  const digi = await googleMapsClient
+  const nearbyRestaurants = await googleMapsClient
     .placesNearby({
       type: 'restaurant',
       location: {
@@ -20,7 +20,7 @@ app.get('/places', async function(req, res, next) {
     })
     .asPromise()
 
-  res.send(digi.json.results)
+  res.send(nearbyRestaurants.json.results)
 })
 // TODO: Make below get the picture to forward to client
 app.get('/places/pictures', function(req, res, next) {
@@ -35,8 +35,8 @@ app.get('/places/pictures', function(req, res, next) {
     .then(response => {
       res.send(`https://${response.req.socket._host}${response.req.path}`)
     })
-    .catch(() => {
-      res.send('serverError, index.js:')
+    .catch(error => {
+      res.status().send(`serverError, index.js: ${error.message}`)
     })
 })
 
