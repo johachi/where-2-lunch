@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
 const googleMaps = require('@google/maps')
-const akey = require('./googleapi')
+
+const API_KEY = process.env.GOOGLE_API_KEY
 
 const googleMapsClient = googleMaps.createClient({
-  key: akey.key,
+  key: API_KEY,
   Promise: Promise
 })
 
@@ -22,7 +23,7 @@ app.get('/places', async function(req, res, next) {
 
   res.send(nearbyRestaurants.json.results)
 })
-// TODO: Make below get the picture to forward to client
+
 app.get('/places/pictures', function(req, res, next) {
   const { photoReference } = req.query
   googleMapsClient

@@ -1,5 +1,7 @@
 import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin'
 import pkg from './package'
+require('dotenv').config()
+const { GOOGLE_API_KEY } = process.env
 
 export default {
   mode: 'spa',
@@ -42,7 +44,11 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: ['@nuxtjs/dotenv'],
+
+  env: {
+    GOOGLE_API_KEY
+  },
 
   serverMiddleware: ['~/api/index'],
 
