@@ -31,9 +31,12 @@ export default {
       return this.$store.state.places.length > 0
     }
   },
+
   async fetch({ app, store }) {
+    const coordinates = store.state.userLocation
+
     const restaurantData = await axios
-      .get(`/api/places/`)
+      .get(`/api/places?lat=${coordinates.lat}&lng=${coordinates.lng}`)
       .then(res => {
         return res.data
       })

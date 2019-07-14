@@ -1,35 +1,25 @@
 <template>
   <div>
-    <h1>Search Places Near</h1>
-    <br />
-    <form @submit.prevent="submit">
-      <input v-model="search" placeholder="Place" autofocus />
-    </form>
-    <div>
-      or
-    </div>
-    <v-btn small color="primary" @click="searchByLocation"
-      >Current Location
-    </v-btn>
+    <v-btn color="primary" @click="() => searchByLocation($store)"
+      >Find Restaurant Near Me</v-btn
+    >
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      search: ''
-    }
-  },
   methods: {
     submit(event) {
       this.$router.push(`results/${this.search}`)
     },
-    searchByLocation() {
+    searchByLocation(store) {
       navigator.geolocation.getCurrentPosition(position => {
-        this.$router.push(
-          `results/${position.coords.latitude},${position.coords.longitude}`
-        )
+        const { latitude, longitude } = position.coords
+        store.commit('SET_USER_LOCATION', {
+          lat: latitude,
+          lng: longitude
+        })
+        this.$router.push(`results?lat=${latitude}&lng=${longitude}`)
       })
     }
   }
@@ -40,7 +30,7 @@ export default {
   text-align: center;
 }
 
-h1 {
-  padding: 20px;
+.button {
+  height: 500px;
 }
 </style>
