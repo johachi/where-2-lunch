@@ -1,7 +1,11 @@
 <template>
   <div>
-    <v-btn color="primary" @click="() => searchByLocation($store)"
-      >Find Restaurant <br />
+    <v-btn
+      class="search_button"
+      color="primary"
+      @click="() => searchByLocation($store)"
+    >
+      Find Restaurant <br />
       Near Me
     </v-btn>
   </div>
@@ -26,11 +30,11 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 * {
   text-align: center;
 }
-button {
+.search_button {
   height: 70px;
   font-size: 1pc;
   margin-top: 20%;
