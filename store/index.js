@@ -1,6 +1,7 @@
 export const state = () => ({
   places: [],
-  selectedPlace: {}
+  selectedPlace: {},
+  userLocation: {}
 })
 
 export const mutations = {
@@ -15,5 +16,11 @@ export const mutations = {
     const maxnumber = state.places.length
     const placeIndex = Math.floor(Math.random() * Math.floor(maxnumber))
     state.selectedPlace = state.places[placeIndex]
+  },
+  SET_USER_LOCATION(state, location) {
+    const lat = location.lat
+    const lng = location.lng
+
+    state.userLocation = { lat, lng }
   }
 }

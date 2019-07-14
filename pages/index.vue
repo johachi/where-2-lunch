@@ -1,23 +1,27 @@
 <template>
   <div>
-    <h1>Search Places Near</h1>
-    <br />
-    <form @submit.prevent="submit">
-      <input v-model="search" placeholder="Place" autofocus />
-    </form>
+    <v-btn color="primary" @click="() => searchByLocation($store)"
+      >Find Restaurant <br />
+      Near Me
+    </v-btn>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      search: ''
-    }
-  },
   methods: {
     submit(event) {
       this.$router.push(`results/${this.search}`)
+    },
+    searchByLocation(store) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const { latitude, longitude } = position.coords
+        store.commit('SET_USER_LOCATION', {
+          lat: latitude,
+          lng: longitude
+        })
+        this.$router.push(`results?lat=${latitude}&lng=${longitude}`)
+      })
     }
   }
 }
@@ -26,8 +30,13 @@ export default {
 * {
   text-align: center;
 }
-
-h1 {
-  padding: 20px;
+button {
+  height: 70px;
+  font-size: 1pc;
+  margin-top: 20%;
+}
+.v-content__wrap {
+  background: url('https://images.pexels.com/photos/1087897/pexels-photo-1087897.jpeg');
+  background-size: cover;
 }
 </style>

@@ -14,10 +14,10 @@ app.get('/places', async function(req, res, next) {
     .placesNearby({
       type: 'restaurant',
       location: {
-        lat: 35.6582788,
-        lng: 139.7273854
+        lat: req.query.lat,
+        lng: req.query.lng
       },
-      radius: 100
+      radius: 200
     })
     .asPromise()
 

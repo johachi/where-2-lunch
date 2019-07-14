@@ -1,8 +1,12 @@
 <template>
   <div>
-    <h1>
-      Where to eat:
-    </h1>
+    <v-layout>
+      <v-flex xs12 sm6 offset-sm3>
+        <h1>
+          Where to eat:
+        </h1>
+      </v-flex>
+    </v-layout>
     <div v-if="placesExist && fetchedPlaceData">
       <Card
         :place-name="$store.state.selectedPlace.name"
@@ -31,9 +35,12 @@ export default {
       return this.$store.state.places.length > 0
     }
   },
+
   async fetch({ app, store }) {
+    const coordinates = store.state.userLocation
+
     const restaurantData = await axios
-      .get(`/api/places/`)
+      .get(`/api/places?lat=${coordinates.lat}&lng=${coordinates.lng}`)
       .then(res => {
         return res.data
       })
