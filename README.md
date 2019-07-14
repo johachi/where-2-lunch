@@ -1,6 +1,6 @@
 # where2lunch
 
-> This project was done as part of a three days prodject at Code Chrysalis where I had to use a technology I had never used before I chose Nuxt. The result is this simple mobile web app that recommend you a close by restaurant (<= 200 m from your current position).
+This project was done as part of a three days prodject at Code Chrysalis where I had to use a technology I had never used before I chose Nuxt. The result is this simple mobile web app that recommend you a close by restaurant (<= 200 m from your current position).
 
 I got the idea since we always had problem deciding where to eat lucnh.
 
