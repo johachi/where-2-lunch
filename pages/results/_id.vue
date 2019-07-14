@@ -1,8 +1,12 @@
 <template>
   <div>
-    <h1>
-      Where to eat:
-    </h1>
+    <v-layout>
+      <v-flex xs12 sm6 offset-sm3>
+        <h1>
+          Where to eat:
+        </h1>
+      </v-flex>
+    </v-layout>
     <div v-if="placesExist && fetchedPlaceData">
       <Card
         :place-name="$store.state.selectedPlace.name"

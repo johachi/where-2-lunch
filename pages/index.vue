@@ -1,8 +1,9 @@
 <template>
   <div>
     <v-btn color="primary" @click="() => searchByLocation($store)"
-      >Find Restaurant Near Me</v-btn
-    >
+      >Find Restaurant <br />
+      Near Me
+    </v-btn>
   </div>
 </template>
 
@@ -29,8 +30,13 @@ export default {
 * {
   text-align: center;
 }
-
-.button {
-  height: 500px;
+button {
+  height: 70px;
+  font-size: 1pc;
+  margin-top: 20%;
+}
+.v-content__wrap {
+  background: url('https://images.pexels.com/photos/1087897/pexels-photo-1087897.jpeg');
+  background-size: cover;
 }
 </style>
