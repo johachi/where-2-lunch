@@ -51,7 +51,12 @@ export default {
     store.commit('UPDATE_PLACES', restaurantData)
   },
   mounted: async function() {
-    if (!this.$store.state.selectedPlace.hasOwnProperty('photos')) {
+    if (
+      !Object.prototype.hasOwnProperty.call(
+        this.$store.state.selectedPlace.hasOwnProperty,
+        'photos'
+      )
+    ) {
       this.singlePhoto = '/images/NO_PHOTO.png'
     } else {
       const photoReference = this.$store.state.selectedPlace.photos[0]
